@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css"
+import Track from "./components/Track"
 
 function App() {
+  const tracksResultArray = [
+    {
+      artist: "Snoop Dog",
+      song: "Beautiful",
+      album: "Colab",
+      id: "asdsadsad3452",
+    },
+    {
+      artist: "Beyonce",
+      song: "Diva",
+      album: "Div",
+      id: "asda3rfs333423",
+    },
+  ]
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Sunny's Spotify Project</h1>
+
+      <h3>Tracks</h3>
+
+      {
+      tracksResultArray.length > 0 ?
+
+        tracksResultArray.map(trackObject => {
+
+          return (
+            <Track
+              trackObject={trackObject}
+              key={trackObject.id}
+            />
+
+          )
+
+        })
+
+        : <h3>Loding Track Data from API</h3>
+
+      }
+
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
