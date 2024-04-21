@@ -1,8 +1,7 @@
 import React from "react";
 import styles from "./Track.module.css";
 
-export default function Track(props) {
-  const trackObject = props.trackObject;
+export default function Track({ trackObject }) {
 
   return (
     <div className={styles.wrapper}>

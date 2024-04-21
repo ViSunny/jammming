@@ -1,46 +1,84 @@
-import "./App.css"
-import Track from "./components/Track"
+import styles from "./App.module.css"
+import React, { useState } from "react";
+
+import SearchResults from "./components/SearchResults.js"
+import Playlist from "./components/Playlist.js"
 
 function App() {
-  const tracksResultArray = [
-    {
-      artist: "Snoop Dog",
-      song: "Beautiful",
-      album: "Colab",
-      id: "asdsadsad3452",
-    },
-    {
-      artist: "Beyonce",
-      song: "Diva",
-      album: "Div",
-      id: "asda3rfs333423",
-    },
-  ]
+
+  const [searchData, setSearchData] = useState(
+    [
+      {
+        artist: "Snoop Dog",
+        song: "Beautiful",
+        album: "Colab",
+        id: "asdsadsad3452",
+      },
+      {
+        artist: "Beyonce",
+        song: "Diva",
+        album: "Div",
+        id: "asda3rfs333423",
+      }
+    ]
+  )
+
+  const [playlistData, setPlaylistData] = useState({
+    playlistName: 'My Playlist',
+    tracks: []
+  }
+  )
+
+  function addTrack(songObject) {
+    setPlaylistData((previousState) => { //previousState incoming property - default received from state integrated react function
+      return {
+        ...previousState,
+        tracks: [...previousState.tracks, songObject]
+      }
+    })
+  }
+
+  function removeTrack(songObject, index) {
+
+    setPlaylistData((previousState) => { //previousState incoming property - default received from state integrated react function
+      
+      let newArray = previousState.tracks;
+      newArray.splice(index, 1)
+
+      return {
+        ...previousState,
+        tracks: newArray
+      }
+    })
+  }
+
+  async function getTracks() {
+
+  }
+
+  function changeName(newName) {
+ 
+
+  }
 
   return (
-    <div className="App">
+    <div className={styles.app}>
       <h1>Sunny's Spotify Project</h1>
 
-      <h3>Tracks</h3>
+      <div className={styles.tracklists}>
 
-      {
-      tracksResultArray.length > 0 ?
+        <SearchResults
+          searchData={searchData}
+          addTrack={addTrack}
+        />
 
-        tracksResultArray.map(trackObject => {
+        <Playlist
+          playlistData={playlistData}
+          removeTrack={removeTrack}
+        />
 
-          return (
-            <Track
-              trackObject={trackObject}
-              key={trackObject.id}
-            />
+      </div>
 
-          )
-
-        })
-
-        : <h3>Loding Track Data from API</h3>
-
-      }
 
     </div>
   )

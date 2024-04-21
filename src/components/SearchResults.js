@@ -1,20 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./SearchResults.module.css";
+import Tracklist from "./Tracklist";
 
-export default function SearchResults() {
-
-  //JS
-
-
-
+function SearchResults({ searchData, addTrack }) {
 
   return (
 
-  <div className={styles.wrapper}>
+    <div className={styles.wrapper}>
+      <h3>Search Results</h3>
 
-  {/* {HTML / JSX} */}
 
-  </div>
+
+      <Tracklist
+        tracksData={searchData}
+        buttonFunction={addTrack}
+        signage={'+'}
+      />
+
+    </div>
   )
 }
 
+export default SearchResults

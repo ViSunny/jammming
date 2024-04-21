@@ -1,20 +1,36 @@
 import React from "react";
 import styles from "./Tracklist.module.css";
+import Track from "./Track";
 
-export default function Tracklist() {
-
-  //JS
-
-
+export default function Tracklist({ tracksData, buttonFunction, signage }) {
 
 
   return (
 
-  <div className={styles.wrapper}>
+    <div className={styles.wrapper}>
+      <h3>Tracks</h3>
 
-  {/* {HTML / JSX} */}
+      {
+        tracksData.length > 0 ?
+          tracksData.map((trackObject, index) => {
 
-  </div>
+            return (
+              <div key={trackObject.id + index}>
+                
+                <Track
+                  trackObject={trackObject} />
+
+                <button
+                  onClick={() => buttonFunction(trackObject, index)}>
+                  {signage}
+                </button>
+
+              </div>
+            )
+          })
+          : <h3>No Tracks Yet</h3>
+      }
+    </div>
   )
 }
 
