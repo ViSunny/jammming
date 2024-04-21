@@ -29,6 +29,20 @@ function App() {
   }
   )
 
+  function handleSavePLname(newName) {
+
+  setPlaylistData(previousState => {
+
+    return {
+      ...previousState, 
+      playlistName: newName,
+    }
+
+  })
+
+  }
+  
+
   function addTrack(songObject) {
     setPlaylistData((previousState) => { //previousState incoming property - default received from state integrated react function
       return {
@@ -56,10 +70,7 @@ function App() {
 
   }
 
-  function changeName(newName) {
- 
 
-  }
 
   return (
     <div className={styles.app}>
@@ -75,6 +86,7 @@ function App() {
         <Playlist
           playlistData={playlistData}
           removeTrack={removeTrack}
+          handleSavePLname={handleSavePLname}
         />
 
       </div>
